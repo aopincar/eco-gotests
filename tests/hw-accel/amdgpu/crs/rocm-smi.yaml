@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rocm-smi
+spec:
+  containers:
+    - image: docker.io/rocm/pytorch:latest
+      name: rocm-smi
+      command: ["/bin/sh","-c"]
+      args: ["rocm-smi"]
+      resources:
+        limits:
+          amd.com/gpu: 1
+        requests:
+          amd.com/gpu: 1
+  restartPolicy: Never
